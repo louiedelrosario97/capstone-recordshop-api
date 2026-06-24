@@ -10,8 +10,10 @@ import org.yearup.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 // workbook 8a pg. 89 - how to write tests for Service Layer
@@ -46,6 +48,23 @@ class ProductServiceTest
         assertEquals(2, results.size());
     }
 
+    @Test
+    public void update_shouldCallSetStock_andUpdateToSetValue() // IC!
+    {
+        // arrange
+        Product product = new Product();
+        product.setStock(50);
 
+        Product productStockUpdated = new Product();
+        product.setStock(100);
 
+        when(productRepository.findById(1)).thenReturn(Optional.of(product));
+        when(productRepository.save(any(Product.class))).thenAnswer(i -> i.getArgument(0));
+
+        // act
+        Product result = productService.update(1, productStockUpdated);
+
+        // assert
+        assertEquals(100, result.getStock());
+    }
 }
