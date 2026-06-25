@@ -85,15 +85,22 @@ public class ShoppingCartService
 
 // ----------------------------------- [ DELETE - clearCart() ] -------------------------------------------------------
 
+    // instructions: Delete method should completely clear the shopping cart table's data.
+
+    // notes: call the repo to access DB. repo has a deleteByUserId() built in, nice.
     public void clearCart(int userId)
     {
-
+        shoppingCartRepository.deleteByUserId(userId);
     }
 
-// ----------------------------------- [ PUT - updateCart() ] --------------------------------------------------------
+// ----------------------------------- [ PUT - updateProduct() ] --------------------------------------------------------
+
+    // instructions: this method should update the quantity of a specific product that is already in the cart
+
+    // notes: OPTIONAL, do later if there is time
 
     public ShoppingCart updateProduct(int userId, int productId, int quantity)
     {
-
+        return null;
     }
 }
