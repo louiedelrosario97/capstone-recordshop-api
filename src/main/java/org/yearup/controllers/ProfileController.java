@@ -27,8 +27,6 @@ public class ProfileController
         this.userService = userService;
     }
 
-
-
     // notes: get the USERS profile from the server. How do you get specifically the users profile?
     // Hello, it's me from the future, I looked at the ShoppingCart controller since it is doing a similar action. Use principal!
     @GetMapping
@@ -43,8 +41,18 @@ public class ProfileController
         return profileService.getByUserId(userId);
     }
 
-    @P
+    // notes: update the users profile information. use @RequestBody on the Profile class.
+    // pass a Principal object (specifies username) and a Profile object (w/ data changes via @RequestBody)
+    @PutMapping
+    public Profile updateProfile(Principal principal, @RequestBody Profile profile)
+    {
+        String username = principal.getName();
 
+        User user = userService.getByUserName(username);
+        int userId = user.getId();
+
+        return profileService.update(userId, profile);
+    }
 
 }
 
