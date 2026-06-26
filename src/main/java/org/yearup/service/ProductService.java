@@ -56,7 +56,7 @@ public class ProductService
         existing.setSubCategory(product.getSubCategory());
         existing.setFeatured(product.isFeatured());
         existing.setImageUrl(product.getImageUrl());
-        existing.setStock(product.getStock()); // added this line so stock actually updates when using PUT requests
+        existing.setStock(product.getStock()); // DEBUGGED: added this line so stock actually updates when using PUT requests
         return productRepository.save(existing);
     }
 
