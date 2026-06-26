@@ -18,26 +18,26 @@ public class CategoryService
 
     public List<Category> getAllCategories()
     {
-        // [ COMPLETE ] get all categories
+        // get all categories
         return categoryRepository.findAll();
     }
 
     public Category getById(int categoryId)
     {
-        // [ COMPLETE ] get category by id
+        // get category by id
         return categoryRepository.findById(categoryId).orElse(null);
     }
 
     public Category create(Category category)
     {
-        // [ COMPLETE ] create a new category
+        // create a new category
         category.setCategoryId(0); // review later
         return categoryRepository.save(category);
     }
 
     public Category update(int categoryId, Category category)
-    {   // we don't need to update Category_Id (primary key)
-        // [ COMPLETE ] update category and return the updated category
+    {
+        // update category and return the updated category
         Category existing = categoryRepository.findById(categoryId).orElseThrow();
         existing.setName(category.getName());
         existing.setDescription(category.getDescription());
@@ -46,7 +46,7 @@ public class CategoryService
 
     public void delete(int categoryId)
     {
-        // [ COMPLETE ] delete category
+        // delete category
         categoryRepository.deleteById(categoryId);
     }
 }
