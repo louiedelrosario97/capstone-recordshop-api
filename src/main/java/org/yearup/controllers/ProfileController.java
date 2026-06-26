@@ -15,6 +15,8 @@ import java.security.Principal;
 @RestController
 @RequestMapping("profile")
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
+
 public class ProfileController
 {
     private ProfileService profileService;
@@ -30,7 +32,6 @@ public class ProfileController
     // notes: get the USERS profile from the server. How do you get specifically the users profile?
     // Hello, it's me from the future, I looked at the ShoppingCart controller since it is doing a similar action. Use principal!
     @GetMapping
-    @PreAuthorize("isAuthenticated()")
     public Profile getUserProfile(Principal principal)
     {
         String username = principal.getName();

@@ -14,12 +14,8 @@ import org.yearup.service.ProductService;
 
 import java.util.List;
 
-// [ COMPLETE ] add the annotations to make this a REST controller
 @RestController
-// [ COMPLETE ] add the annotation to make this controller the endpoint for the following url
-    // http://localhost:8080/categories
 @RequestMapping("categories")
-// [ COMPLETE ] add annotation to allow cross site origin requests
 @CrossOrigin
 
 public class CategoriesController
@@ -28,7 +24,7 @@ public class CategoriesController
     private ProductService productService;
 
 
-    // [ COMPLETE ] create an Autowired constructor to inject the categoryService and productService
+    // create an Autowired constructor to inject the categoryService and productService
     @Autowired
     public CategoriesController(CategoryService categoryService, ProductService productService)
     {
