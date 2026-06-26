@@ -8,6 +8,8 @@ import org.yearup.models.User;
 import org.yearup.service.ProfileService;
 import org.yearup.service.UserService;
 
+import java.security.Principal;
+
 // notes: needs a GET method getProfile(), and a PUT method create(). create() is already built in service class.
 // needs an @autowired constructor to inject ProfileService (do we need to inject UserService too??) (Yes, I think)
 @RestController
@@ -28,13 +30,21 @@ public class ProfileController
 
 
     // notes: get the USERS profile from the server. How do you get specifically the users profile?
-    // Hello, it's me from the future, I looked at the ShoppingCart controller since it is doing a similar action.
-    @GetMapping("{profile}")
-    @PreAuthorize("hasRole")
-    public ProfileService getById(@PathVariable String profile)
+    // Hello, it's me from the future, I looked at the ShoppingCart controller since it is doing a similar action. Use principal!
+    @GetMapping
+    @PreAuthorize("isAuthenticated()")
+    public Profile getUserProfile(Principal principal)
     {
-        Profile p
-        return
+        String username = principal.getName();
+
+        User user = userService.getByUserName(username);
+        int userId = user.getId();
+
+        return profileService.getByUserId(userId);
     }
+
+    @P
+
+
 }
 
